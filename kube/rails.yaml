@@ -1,27 +1,27 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-docker-rails
+  name: rails-service
 spec:
   type: LoadBalancer
   selector:
-    app: hello-docker-rails
+    app: rails-app
   ports:
     - port: 3000
 ---
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: hello-docker-rails
+  name: rails-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: hello-docker-rails
+      app: rails-app
   template:
     metadata:
       labels:
-        app: hello-docker-rails
+        app: rails-app
     spec:
       containers:
         - name: hello-docker-rails
@@ -37,6 +37,6 @@ spec:
                   name: mysql-pass
                   key: password
             - name: MYSQL_HOST
-              value: "mysql"
+              value: "mysql-service"
             - name: MYSQL_PORT
               value: "3306"

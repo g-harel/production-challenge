@@ -2,11 +2,11 @@
 
 ```shell
 # minikube: v0.24.0
-# cluster: v1.8
+# cluster:  v1.8
 $ ./run.sh
 ```
 
-The script will create the required kubernetes objects under the "hello-rails" namespace. It will also output the external ip/port at which the app will be served once the pods are created.
+The script will create the required kubernetes objects under the `hello-rails` namespace. It will also output the external ip/port at which the app will be served once the pods are created.
 
 ```shell
 namespace "hello-rails" created
@@ -20,24 +20,11 @@ deployment "rails-deployment" created
 http://192.168.99.104:31152
 ```
 
-## Production Engineering / Infrastructure Problem
-
-- Install minikube on your computer.
-- Get this simple [rails on docker](https://hub.docker.com/r/benjamincaldwell/hello-docker-rails/) application running inside Kubernetes.
-
-###### Hint: This will typically involve creating two separate deployments: one for the web application and another for MySQL. Creating a Kubernetes namespace for your application will help keep things organized.
-
-### What to submit
-
-Send us a screenshot of the working application, and the output of running the following command:
-
-```
-kubectl describe deployments -n <your-app-namespace>
-```
-
 ---
 
 ![screenshot](screenshot.png)
+
+---
 
 ```shell
 $ kubectl describe deployments -n hello-rails
@@ -113,6 +100,8 @@ Events:
   ----    ------             ----  ----                   -------
   Normal  ScalingReplicaSet  19m   deployment-controller  Scaled up replica set rails-deployment-7cd89c8797 to 3
 ```
+
+---
 
 ```shell
 $ kubectl describe pods -n hello-rails
